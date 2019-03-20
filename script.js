@@ -26,18 +26,17 @@ function changeTitle(id) {
 function changeList(id) {
 
   var mom = moment();
+      mom.month(id);
+      mom.year(2018);
   var days = mom.month(id).daysInMonth();
+  var output = mom.format("MMMM YYYY");
 
   var source = $("#list").html();
   var template = Handlebars.compile(source);
   var container = $(".holiday-list ul");
-      container.html("");
+      container.html("");       //Ripulisco container a prescindere
 
   for (var day = 1; day <= days; day++) {
-
-        mom.month(id);
-        mom.year(2018);
-    var output = mom.format("MMMM YYYY")
 
     var data = {
       li: day + " " + output
@@ -45,6 +44,7 @@ function changeList(id) {
     var fullHtml = template(data);
         container.append(fullHtml);
   }
+  
 }
 
 
