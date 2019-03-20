@@ -15,9 +15,13 @@
     <script src="script.js" charset="utf-8"></script>
     <!-- Importo mio css -->
     <link rel="stylesheet" href="style.css">
+    <script id="month-title" type="text/x-handlebars-template">
+      <h1>{{ month }} [{{ days }}]</h1>
+    </script>
   </head>
   <body>
     <div class="container">
+      <!-- Inizio lista mesi -->
       <div class="multi-list">
         <ul>
           <li>Gennaio</li>
@@ -34,8 +38,12 @@
           <li>Dicembre</li>
         </ul>
       </div>
+      <!-- Fine lista mesi -->
       <div class="single-list">
-        <h1>Gennaio - 1-31</h1>
+        <h2>ANNO 2018</h2>
+        <div class="holiday-list">
+
+        </div>
       </div>
     </div>
   </body>
