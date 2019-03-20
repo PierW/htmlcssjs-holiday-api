@@ -18,9 +18,33 @@ function changeTitle(id) {
   }
   var fullHtml = template(data);
 
-  var container = $(".holiday-list");
+  var container = $(".holiday-title");
       container.html(fullHtml);
 
+}
+
+function changeList(id) {
+
+  var mom = moment();
+  var days = mom.month(id).daysInMonth();
+
+  var source = $("#list").html();
+  var template = Handlebars.compile(source);
+  var container = $(".holiday-list ul");
+      container.html("");
+
+  for (var day = 1; day <= days; day++) {
+
+        mom.month(id);
+        mom.year(2018);
+    var output = mom.format("MMMM YYYY")
+
+    var data = {
+      li: day + " " + output
+    }
+    var fullHtml = template(data);
+        container.append(fullHtml);
+  }
 }
 
 
@@ -31,6 +55,7 @@ function init() {
     var me = $(this);
     var index = me.index(); //Prendo Indice
     changeTitle(index);    //Lo passo alla funzione
+    changeList(index);
   });
 
 }

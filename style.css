@@ -54,3 +54,8 @@ body{
 .holiday-list{
   margin-top: 50px;
 }
+
+.holiday-list ul{
+  list-style-type: none;
+  color: lightgrey;
+}
