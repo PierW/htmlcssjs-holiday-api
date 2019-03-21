@@ -31,6 +31,8 @@ body{
   width: 70%;
   text-align: center;
   padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .multi-list > ul {
@@ -53,13 +55,32 @@ body{
 
 .holiday-list{
   margin-top: 50px;
+  font-size: 14px;
 }
 
 .holiday-list ul{
   list-style-type: none;
   color: lightgrey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.red{
-  color: red;
+.holiday-list ul > li{
+  width: 100px;
+  height: 100px;
+  border: 0.5px solid #ffffff40;
+  background-color: #2a2a2a50;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.holiday-list ul > li:hover{
+  background-color: #2a2a2a90;
+  border-color: #ffffff90
+}
+
+.holiday-list ul > li.red{
+  background-color: #2a2a2a;
+  color: #ff000080;
 }
