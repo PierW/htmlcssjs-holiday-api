@@ -29,7 +29,6 @@ function changeList(id) {
       mom.month(id);
       mom.year(2018);
   var days = mom.month(id).daysInMonth();
-  var output = mom.format("MMMM YYYY");
 
   var source = $("#list").html();
   var template = Handlebars.compile(source);
@@ -38,14 +37,48 @@ function changeList(id) {
 
   for (var day = 1; day <= days; day++) {
 
+        mom.date(day);
+    var output = mom.format("DD MMMM YYYY");
+    var datamachine = mom.format("YYYY-MM-DD");
     var data = {
-      li: day + " " + output
+      li: output,
+      data_machine: datamachine
     }
     var fullHtml = template(data);
         container.append(fullHtml);
   }
-  
+
 }
+
+function checkHoliday(month) {
+
+  $.ajax({
+    url: "https://flynn.boolean.careers/exercises/api/holidays",
+    method: "GET",
+    data: { year: 2018, month: month},
+    success: function (dati, stato){
+
+      if (dati.success) {
+
+        var holidays = dati.response;
+        for (var i = 0; i < holidays.length; i++) {
+
+          var findDataMachine = $("li[data-check='" + holidays[i].date + "']");
+              findDataMachine.addClass("red");
+              findDataMachine.text(
+                findDataMachine.text()
+                + " - "
+                + holidays[i].name);
+        }
+      }
+    },
+    error: function(richiesta, stato, errori) {
+
+      alert("Errore di connessione.")
+    }
+  });
+}
+
 
 
 function init() {
@@ -56,6 +89,7 @@ function init() {
     var index = me.index(); //Prendo Indice
     changeTitle(index);    //Lo passo alla funzione
     changeList(index);
+    checkHoliday(index);
   });
 
 }
